@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "F:\\.NET\\IotService\\IotService\\IoT.BlazorClient\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "F:\\.NET\\IotService\\IotService\\IoT.BlazorClient\\obj\\Debug\\net8.0\\compressed\\v0hos92qz7.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "F:\\.NET\\IotService\\IotService\\IoT.BlazorClient\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "F:\\.NET\\IotService\\IotService\\IoT.BlazorClient\\wwwroot\\css\\home.css",
+      "PackagePath": "staticwebassets\\css\\home.css"
+    },
+    {
+      "Id": "F:\\.NET\\IotService\\IotService\\IoT.BlazorClient\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "F:\\.NET\\IotService\\IotService\\IoT.BlazorClient\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.IoT.BlazorClient.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.IoT.BlazorClient.props",
+      "PackagePath": "build\\IoT.BlazorClient.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.IoT.BlazorClient.props",
+      "PackagePath": "buildMultiTargeting\\IoT.BlazorClient.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.IoT.BlazorClient.props",
+      "PackagePath": "buildTransitive\\IoT.BlazorClient.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

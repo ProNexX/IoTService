@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "0PWLdPdPnlY=",
+  "success": true,
+  "projectFilePath": "F:\\.NET\\IotService\\IotService\\IoT.KafkaProducer\\IoT.KafkaProducer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\muham\\.nuget\\packages\\confluent.kafka\\2.10.0\\confluent.kafka.2.10.0.nupkg.sha512",
+    "C:\\Users\\muham\\.nuget\\packages\\librdkafka.redist\\2.10.0\\librdkafka.redist.2.10.0.nupkg.sha512"
+  ],
+  "logs": []
+}

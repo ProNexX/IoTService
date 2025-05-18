@@ -1,0 +1,313 @@
+﻿@page "/"
+@using MudBlazor
+@using System.Timers
+@inject TelemetryService TelemetryService
+@implements IDisposable
+
+<MudThemeProvider Theme="MyCustomTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<div class="mud-background-gray" style="min-height: 100vh; padding: 16px;">
+    <MudContainer MaxWidth="MaxWidth.Large" Class="pt-6 pb-16">
+        <MudPaper Elevation="0" Class="pa-4 mb-4" Style="background: transparent;">
+            <MudGrid>
+                <MudItem xs="12" md="6">
+                    <MudText Typo="Typo.h4" Color="Color.Primary">IoT Telemetry Dashboard</MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mt-1" Color="Color.Dark">Real-time device monitoring</MudText>
+                </MudItem>
+                <MudItem xs="12" md="6" Class="d-flex justify-end align-center">
+                    <MudChip T="bool" Color="@(TelemetryService.IsConnected ? Color.Success : Color.Error)" 
+                             Size="Size.Small"
+                             Icon="@(TelemetryService.IsConnected ? @Icons.Material.Filled.CloudDone : @Icons.Material.Filled.CloudOff)"
+                             Label="true">
+                        @(TelemetryService.IsConnected ? "Connected" : "Disconnected")
+                    </MudChip>
+                </MudItem>
+            </MudGrid>
+        </MudPaper>
+
+        @if (!string.IsNullOrEmpty(connectionError))
+        {
+            <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="my-4" ShowCloseIcon="true" CloseIconClicked="() => { connectionError = string.Empty; }">
+                <MudText>@connectionError</MudText>
+                <MudButton Variant="Variant.Text" Color="Color.Inherit" EndIcon="@Icons.Material.Filled.Refresh" OnClick="RetryConnection" Class="ml-auto">Retry</MudButton>
+            </MudAlert>
+        }
+
+        <MudGrid Spacing="4">
+            <!-- Dashboard Stats -->
+            <MudItem xs="12" md="4">
+                <MudPaper Class="pa-4 mud-height-full" Elevation="3">
+                    <MudText Typo="Typo.h6" Class="mb-4"><MudIcon Icon="@Icons.Material.Filled.Dashboard" Class="mr-2" /> Dashboard Statistics</MudText>
+                    
+                    <MudList T="string" Clickable="false">
+                        <MudListItem T="string" Icon="@Icons.Material.Filled.DataUsage">
+                            <div class="d-flex justify-space-between align-center width-100">
+                                <MudText>Total Data Points</MudText>
+                                <MudBadge Content="@telemetryData.Count" Color="Color.Primary" Overlap="true" Class="mud-badge-inline">
+                                    <MudChip T="int" Color="Color.Default" Size="Size.Small">@telemetryData.Count</MudChip>
+                                </MudBadge>
+                            </div>
+                        </MudListItem>
+                        
+                        <MudListItem T="string" Icon="@Icons.Material.Filled.SignalCellularAlt">
+                            <div class="d-flex justify-space-between align-center width-100">
+                                <MudText>Connection Status</MudText>
+                                <MudChip T="bool" Color="@(TelemetryService.IsConnected ? Color.Success : Color.Error)" Size="Size.Small">
+                                    @(TelemetryService.IsConnected ? "Online" : "Offline")
+                                </MudChip>
+                            </div>
+                        </MudListItem>
+                        
+                        <MudListItem T="string" Icon="@Icons.Material.Filled.AccessTime">
+                            <div class="d-flex justify-space-between align-center width-100">
+                                <MudText>Latest Update</MudText>
+                                <MudChip T="string" Color="Color.Dark" Size="Size.Small">@(telemetryData.Count > 0 ? GetLatestTimestamp() : "N/A")</MudChip>
+                            </div>
+                        </MudListItem>
+
+                        <MudDivider Class="my-3" />
+                        
+                        <MudListItem T="string">
+                            <MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Primary" OnClick="ClearData" 
+                                       StartIcon="@Icons.Material.Filled.ClearAll">
+                                Clear All Data
+                            </MudButton>
+                        </MudListItem>
+                    </MudList>
+                </MudPaper>
+            </MudItem>
+
+            <!-- Telemetry Data Feed -->
+            <MudItem xs="12" md="8">
+                <MudPaper Class="pa-4" Elevation="3">
+                    <div class="d-flex justify-space-between align-center mb-4">
+                        <MudText Typo="Typo.h6"><MudIcon Icon="@Icons.Material.Filled.Memory" Class="mr-2" /> Telemetry Data Feed</MudText>
+                        <MudChip T="int" Color="Color.Secondary" Size="Size.Small">Latest @(Math.Min(telemetryData.Count, 50)) entries</MudChip>
+                    </div>
+
+                    @if (telemetryData.Count == 0)
+                    {
+                        <MudPaper Class="d-flex flex-column align-center pa-8" Elevation="0">
+                            <MudIcon Icon="@Icons.Material.Filled.DataArray" Color="Color.Default" Size="Size.Large" Class="mb-4" />
+                            <MudText Typo="Typo.body1" Align="Align.Center">No telemetry data has been received yet.</MudText>
+                            <MudText Typo="Typo.body2" Align="Align.Center" Color="Color.Secondary" Class="mt-2">
+                                Data will appear here as devices transmit telemetry information.
+                            </MudText>
+                        </MudPaper>
+                    }
+                    else
+                    {
+                        <div style="max-height: 400px; overflow-y: auto;">
+                            <MudList T="string" Dense="true" Clickable="false" Class="py-0">
+                                @foreach (var (data, index) in telemetryData.Take(50).Select((data, index) => (data, index)))
+                                {
+                                    <MudListItem T="string" Class="@(index % 2 == 0 ? "mud-theme-primary" : "")" Style="@($"opacity: {1.0 - (index * 0.015)}; border-left: 2px solid {GetStatusColor(index)}; transition: all 0.3s ease;")">
+                                        <div class="d-flex align-center">
+                                            <MudIcon Icon="@Icons.Material.Filled.Radio" Size="Size.Small" Class="mr-2" Color="@GetIconColor(index)" />
+                                            <MudText Typo="Typo.body2">@data</MudText>
+                                        </div>
+                                    </MudListItem>
+                                }
+                            </MudList>
+                        </div>
+                    }
+                </MudPaper>
+            </MudItem>
+
+            <!-- Additional Stats -->
+            <MudItem xs="12" md="4">
+                <MudPaper Class="pa-4" Elevation="3">
+                    <MudText Typo="Typo.h6" Class="mb-4"><MudIcon Icon="@Icons.Material.Filled.Speed" Class="mr-2" /> System Metrics</MudText>
+                    
+                    <MudProgressLinear Color="Color.Success" Striped="true" Size="Size.Large" Value="GetUptime()" Class="mb-2" />
+                    <MudText Typo="Typo.caption" Class="mb-4 d-flex justify-end">System Uptime: @GetUptimeText()</MudText>
+                    
+                    <MudDivider Class="mb-4" />
+                    
+                    <MudList T="string" Clickable="false" DisableGutters="true" Dense="true">
+                        <MudListItem T="string">
+                            <MudText Typo="Typo.body2">Last Reconnection: <MudChip Size="Size.Small" Color="Color.Info">@GetLastReconnectionTime()</MudChip></MudText>
+                        </MudListItem>
+                    </MudList>
+                </MudPaper>
+            </MudItem>
+
+            <!-- Device Status -->
+            <MudItem xs="12" md="8">
+                <MudPaper Class="pa-4" Elevation="3">
+                    <MudText Typo="Typo.h6" Class="mb-4"><MudIcon Icon="@Icons.Material.Filled.Devices" Class="mr-2" /> Connected Devices</MudText>
+                    
+                    @* <MudTable Items="@GetMockDevices()" Dense="true" Hover="true" Elevation="0" Class="mb-0">
+                        <HeaderContent>
+                            <MudTh>Device ID</MudTh>
+                            <MudTh>Type</MudTh>
+                            <MudTh>Status</MudTh>
+                            <MudTh>Last Seen</MudTh>
+                        </HeaderContent>
+                        <RowTemplate>
+                            <MudTd DataLabel="Device ID">@context.Id</MudTd>
+                            <MudTd DataLabel="Type">@context.Type</MudTd>
+                            <MudTd DataLabel="Status">
+                                <MudChip T="bool" Size="Size.Small" Color="@(context.IsOnline ? Color.Success : Color.Error)">
+                                    @(context.IsOnline ? "Online" : "Offline")
+                                </MudChip>
+                            </MudTd>
+                            <MudTd DataLabel="Last Seen">@context.LastSeen</MudTd>
+                        </RowTemplate>
+                    </MudTable> *@
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+</div>
+
+@code {
+    private List<string> telemetryData = new();
+    private string connectionError = string.Empty;
+    private DateTime startTime = DateTime.Now;
+    private DateTime lastReconnection = DateTime.Now;
+    private Dictionary<string, int> devices = [];
+
+    // Mock device class for better visualization
+    public class DeviceInfo
+    {
+        public string Id { get; set; }
+        public string Type { get; set; }
+        public bool IsOnline { get; set; }
+        public string LastSeen { get; set; }
+    }
+
+    private MudTheme MyCustomTheme = new MudTheme()
+    {
+        PaletteDark = new PaletteDark()
+        {
+            Primary = "#5048E5",
+            Secondary = "#10B981",
+            AppbarBackground = "#111827",
+            Background = "#F9FAFC",
+            DrawerBackground = "#111827",
+            DrawerText = "rgba(255,255,255, 0.50)",
+            Success = "#2DD4BF",
+            Error = "#F43F5E",
+        },
+        PaletteLight = new PaletteLight()
+        {
+            Primary = "#5048E5",
+            Secondary = "#10B981",
+            AppbarBackground = "#F9FAFC",
+            Background = "#F9FAFC",
+            DrawerBackground = "#F9FAFC",
+            DrawerText = "rgba(0,0,0, 0.50)",
+            Success = "#2DD4BF",
+            Error = "#F43F5E",
+        }
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        TelemetryService.OnTelemetryReceived += HandleTelemetryReceived;
+        TelemetryService.OnConnectionError += HandleConnectionError;
+
+        // Create a timer to update UI elements that show time-based information
+        var timer = new Timer(5000);
+        timer.Elapsed += (sender, args) => InvokeAsync(StateHasChanged);
+        timer.Start();
+
+        await TelemetryService.StartAsync();
+    }
+
+    private void HandleTelemetryReceived(string data)
+    {
+        telemetryData.Insert(0, $"{DateTime.Now:HH:mm:ss} - {data}");
+        if (telemetryData.Count > 100)
+        {
+            telemetryData.RemoveAt(telemetryData.Count - 1);
+        }
+        connectionError = string.Empty;
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void HandleConnectionError(string error)
+    {
+        connectionError = error;
+        lastReconnection = DateTime.Now;
+        InvokeAsync(StateHasChanged);
+    }
+
+    private async Task RetryConnection()
+    {
+        connectionError = "Attempting to reconnect...";
+        lastReconnection = DateTime.Now;
+        await InvokeAsync(StateHasChanged);
+        await TelemetryService.StartAsync();
+    }
+
+    private string GetLatestTimestamp()
+    {
+        if (telemetryData.Count > 0)
+        {
+            var match = System.Text.RegularExpressions.Regex.Match(telemetryData[0], @"(\d{2}:\d{2}:\d{2})");
+            return match.Success ? match.Groups[1].Value : "N/A";
+        }
+        return "N/A";
+    }
+
+    private void ClearData()
+    {
+        telemetryData.Clear();
+        InvokeAsync(StateHasChanged);
+    }
+
+    private string GetStatusColor(int index)
+    {
+        return index switch
+        {
+            0 => "#5048E5",  // Primary 
+            1 => "#10B981",  // Secondary
+            2 => "#6366F1",  // Indigo
+            3 => "#3B82F6",  // Blue
+            _ => "#94A3B8",  // Gray
+        };
+    }
+
+    private Color GetIconColor(int index)
+    {
+        return index switch
+        {
+            0 => Color.Primary,
+            1 => Color.Secondary,
+            2 => Color.Info,
+            3 => Color.Success,
+            _ => Color.Default,
+        };
+    }
+
+    private double GetUptime()
+    {
+        var totalSeconds = (DateTime.Now - startTime).TotalSeconds;
+        return Math.Min(100, totalSeconds / 60); // For demo purposes, max out at 100% after 60 seconds
+    }
+
+    private string GetUptimeText()
+    {
+        var uptime = DateTime.Now - startTime;
+        return $"{uptime.Hours:D2}:{uptime.Minutes:D2}:{uptime.Seconds:D2}";
+    }
+
+    private string GetLastReconnectionTime()
+    {
+        return lastReconnection.ToString("HH:mm:ss");
+    }
+
+    public void Dispose()
+    {
+        // Unsubscribe from events to prevent memory leaks
+        if (TelemetryService != null)
+        {
+            TelemetryService.OnTelemetryReceived -= HandleTelemetryReceived;
+            TelemetryService.OnConnectionError -= HandleConnectionError;
+        }
+    }
+}

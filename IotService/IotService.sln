@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoT.GrpcService", "IoT.GrpcService\IoT.GrpcService.csproj", "{4610C48B-53B8-4526-936F-DC11492B7507}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoT.KafkaProducer", "IoT.KafkaProducer\IoT.KafkaProducer.csproj", "{41F2E560-124D-485E-A16B-19AA7CC61A57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoT.KafkaConsumer", "IoT.KafkaConsumer\IoT.KafkaConsumer.csproj", "{B9358D08-EEE6-4081-992B-BF580A7C06BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoT.DataAccess", "IoT.DataAccess\IoT.DataAccess.csproj", "{124E64F7-7B4D-43D3-9583-0460ABDECC93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoT.BlazorClient", "IoT.BlazorClient\IoT.BlazorClient.csproj", "{7441D3BB-D872-4E00-844C-A06FC26B9599}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoT.Backend", "IoT.Backend\IoT.Backend.csproj", "{9B0506EB-D71C-469C-9E20-1F440F321ACC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE8B07A9-1658-494D-BFDB-4499DDA8D01D}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4610C48B-53B8-4526-936F-DC11492B7507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4610C48B-53B8-4526-936F-DC11492B7507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4610C48B-53B8-4526-936F-DC11492B7507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4610C48B-53B8-4526-936F-DC11492B7507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41F2E560-124D-485E-A16B-19AA7CC61A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41F2E560-124D-485E-A16B-19AA7CC61A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41F2E560-124D-485E-A16B-19AA7CC61A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41F2E560-124D-485E-A16B-19AA7CC61A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9358D08-EEE6-4081-992B-BF580A7C06BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9358D08-EEE6-4081-992B-BF580A7C06BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9358D08-EEE6-4081-992B-BF580A7C06BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9358D08-EEE6-4081-992B-BF580A7C06BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{124E64F7-7B4D-43D3-9583-0460ABDECC93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{124E64F7-7B4D-43D3-9583-0460ABDECC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{124E64F7-7B4D-43D3-9583-0460ABDECC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{124E64F7-7B4D-43D3-9583-0460ABDECC93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7441D3BB-D872-4E00-844C-A06FC26B9599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7441D3BB-D872-4E00-844C-A06FC26B9599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7441D3BB-D872-4E00-844C-A06FC26B9599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7441D3BB-D872-4E00-844C-A06FC26B9599}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B0506EB-D71C-469C-9E20-1F440F321ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B0506EB-D71C-469C-9E20-1F440F321ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B0506EB-D71C-469C-9E20-1F440F321ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B0506EB-D71C-469C-9E20-1F440F321ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {571F3A03-89EF-4BE5-8790-78364E67AA10}
+	EndGlobalSection
+EndGlobal

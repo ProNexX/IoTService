@@ -1,0 +1,14 @@
+F:\.NET\IotService\IotService\IoT.DataAccess\bin\Debug\net8.0\IoT.DataAccess.deps.json
+F:\.NET\IotService\IotService\IoT.DataAccess\bin\Debug\net8.0\IoT.DataAccess.runtimeconfig.json
+F:\.NET\IotService\IotService\IoT.DataAccess\bin\Debug\net8.0\IoT.DataAccess.dll
+F:\.NET\IotService\IotService\IoT.DataAccess\bin\Debug\net8.0\IoT.DataAccess.pdb
+F:\.NET\IotService\IotService\IoT.DataAccess\obj\Debug\net8.0\IoT.DataAccess.csproj.AssemblyReference.cache
+F:\.NET\IotService\IotService\IoT.DataAccess\obj\Debug\net8.0\IoT.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+F:\.NET\IotService\IotService\IoT.DataAccess\obj\Debug\net8.0\IoT.DataAccess.AssemblyInfoInputs.cache
+F:\.NET\IotService\IotService\IoT.DataAccess\obj\Debug\net8.0\IoT.DataAccess.AssemblyInfo.cs
+F:\.NET\IotService\IotService\IoT.DataAccess\obj\Debug\net8.0\IoT.DataAccess.csproj.CoreCompileInputs.cache
+F:\.NET\IotService\IotService\IoT.DataAccess\obj\Debug\net8.0\IoT.DataAccess.dll
+F:\.NET\IotService\IotService\IoT.DataAccess\obj\Debug\net8.0\refint\IoT.DataAccess.dll
+F:\.NET\IotService\IotService\IoT.DataAccess\obj\Debug\net8.0\IoT.DataAccess.pdb
+F:\.NET\IotService\IotService\IoT.DataAccess\obj\Debug\net8.0\IoT.DataAccess.genruntimeconfig.cache
+F:\.NET\IotService\IotService\IoT.DataAccess\obj\Debug\net8.0\ref\IoT.DataAccess.dll

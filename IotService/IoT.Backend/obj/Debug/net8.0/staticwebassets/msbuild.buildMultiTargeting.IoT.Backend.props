@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\IoT.Backend.props" />
+</Project>

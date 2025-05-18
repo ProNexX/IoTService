@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "IoTService";
+
+package iot;
+
+service TelemetryService {
+  rpc SendTelemetry (TelemetryData) returns (TelemetryAck);
+}
+
+message TelemetryData {
+  string DeviceId = 1;
+  string Timestamp = 2;
+  double Temperature = 3;
+  double Humidity = 4;
+}
+
+message TelemetryAck {
+  string status = 1;
+}

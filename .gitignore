@@ -1,0 +1,29 @@
+# Ignore Kafka and PostgreSQL related files
+*.kafka
+*.kafkacat
+*.pgpass
+*.pg_service.conf
+
+# Ignore Docker-related files
+docker-compose.override.yml
+.docker/
+
+# Ignore local environment files
+.env
+.env.local
+.env.*.local
+
+# Ignore build outputs
+build/
+dist/
+*.tar.gz
+*.zip
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates

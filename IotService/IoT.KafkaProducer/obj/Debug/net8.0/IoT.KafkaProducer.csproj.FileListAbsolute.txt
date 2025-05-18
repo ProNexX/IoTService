@@ -1,0 +1,12 @@
+F:\.NET\IotService\IotService\IoT.KafkaProducer\bin\Debug\net8.0\IoT.KafkaProducer.deps.json
+F:\.NET\IotService\IotService\IoT.KafkaProducer\bin\Debug\net8.0\IoT.KafkaProducer.dll
+F:\.NET\IotService\IotService\IoT.KafkaProducer\bin\Debug\net8.0\IoT.KafkaProducer.pdb
+F:\.NET\IotService\IotService\IoT.KafkaProducer\obj\Debug\net8.0\IoT.KafkaProducer.csproj.AssemblyReference.cache
+F:\.NET\IotService\IotService\IoT.KafkaProducer\obj\Debug\net8.0\IoT.KafkaProducer.GeneratedMSBuildEditorConfig.editorconfig
+F:\.NET\IotService\IotService\IoT.KafkaProducer\obj\Debug\net8.0\IoT.KafkaProducer.AssemblyInfoInputs.cache
+F:\.NET\IotService\IotService\IoT.KafkaProducer\obj\Debug\net8.0\IoT.KafkaProducer.AssemblyInfo.cs
+F:\.NET\IotService\IotService\IoT.KafkaProducer\obj\Debug\net8.0\IoT.KafkaProducer.csproj.CoreCompileInputs.cache
+F:\.NET\IotService\IotService\IoT.KafkaProducer\obj\Debug\net8.0\IoT.KafkaProducer.dll
+F:\.NET\IotService\IotService\IoT.KafkaProducer\obj\Debug\net8.0\refint\IoT.KafkaProducer.dll
+F:\.NET\IotService\IotService\IoT.KafkaProducer\obj\Debug\net8.0\IoT.KafkaProducer.pdb
+F:\.NET\IotService\IotService\IoT.KafkaProducer\obj\Debug\net8.0\ref\IoT.KafkaProducer.dll

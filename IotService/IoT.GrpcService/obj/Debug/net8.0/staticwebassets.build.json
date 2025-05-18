@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "D+HysCAW85lOYLoTDHFF3kq+xwAzsQZ9s1Fd1yPZ3PE=",
+  "Source": "IoT.GrpcService",
+  "BasePath": "_content/IoT.GrpcService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
