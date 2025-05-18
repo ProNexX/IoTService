@@ -1,6 +1,0 @@
-F:\.NET\IotService\IotService\IotService\obj\Debug\net8.0\IotService.csproj.AssemblyReference.cache
-F:\.NET\IotService\IotService\IotService\obj\Debug\net8.0\IotService.GeneratedMSBuildEditorConfig.editorconfig
-F:\.NET\IotService\IotService\IotService\obj\Debug\net8.0\IotService.AssemblyInfoInputs.cache
-F:\.NET\IotService\IotService\IotService\obj\Debug\net8.0\IotService.AssemblyInfo.cs
-F:\.NET\IotService\IotService\IotService\obj\Debug\net8.0\IotService.csproj.CoreCompileInputs.cache
-F:\.NET\IotService\IotService\IotService\obj\Debug\net8.0\IotService.MvcApplicationPartsAssemblyInfo.cache
